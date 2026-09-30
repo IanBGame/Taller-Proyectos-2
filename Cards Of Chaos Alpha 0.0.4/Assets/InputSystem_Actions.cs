@@ -108,7 +108,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""id"": ""868e3268-3edd-43e5-b03f-8e6e7a05af43"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
                 },

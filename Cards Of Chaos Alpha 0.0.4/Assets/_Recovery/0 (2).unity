@@ -337,6 +337,10 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 3830301179732295759
+      type: {class: 'Provider2DCache`1[[UnityEngine.Rendering.Universal.Light2DProvider, Unity.RenderPipelines.Universal.2D.Runtime]]', ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
+      data:
+        m_Cache: []
     - rid: 6188800838491176960
       type: {class: Light2DProviderSources, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data:
@@ -344,7 +348,7 @@ MonoBehaviour:
         m_SelectedSource:
           rid: -2
         m_Provider2DCache:
-          rid: -2
+          rid: 3830301179732295759
 --- !u!4 &619394802
 Transform:
   m_ObjectHideFlags: 0
@@ -421,6 +425,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerSpeed: 4
   bulletPrefab: {fileID: 7911019091856157836, guid: b8c91508c759bb640b45e662825b2831, type: 3}
+  shootTimer: 0
+  shootTime: 40
 --- !u!212 &1379825601
 SpriteRenderer:
   serializedVersion: 3
