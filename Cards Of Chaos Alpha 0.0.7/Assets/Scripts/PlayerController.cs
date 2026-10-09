@@ -2,15 +2,17 @@ using System.Collections;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Debug = UnityEngine.Debug;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRigidBody;
     private Vector2 movementInput;
-    [SerializeField] private float playerSpeed;
+    [SerializeField] public float playerSpeed;
     [SerializeField] private GameObject bulletPrefab;
 
     public float shootTime;
+    public float shootRange;
 
     private Coroutine corrutinaAtaque;
 
@@ -162,6 +164,8 @@ public class PlayerController : MonoBehaviour
                 GameObject bullet = InstantiateBullet();
 
                 BulletController bulletController = GetController(bullet);
+
+                //bullet.GetComponent<BulletController>().bulletTimer = shootRange;
 
                 if (direction == 1)
                 {

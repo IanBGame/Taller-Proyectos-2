@@ -5,6 +5,8 @@ public class BulletController : MonoBehaviour
     public float bulletSpeed;
     public float bulletTimer;
 
+    public int playerNumber;
+
     public bool bulletUp;
     public bool bulletDown;
     public bool bulletLeft;
