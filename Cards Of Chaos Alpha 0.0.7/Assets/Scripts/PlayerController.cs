@@ -14,12 +14,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     public int playerID;
+    public float currentHealth;
 
     public float maxHealth;
     public float projectileSize;
     public float shootTime;
     public float shootRange;
 
+    private float shootWaitTime = 0f;
     private Coroutine corrutinaAtaque;
 
     private bool AttackPulsado = false;
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour
         projectileSize = stats.projectileSize;
         shootRange = stats.shootRange;
         shootTime = stats.shootTime;
+        currentHealth = maxHealth;
 
         SetSkin(stats.skinID);
     }
@@ -60,6 +63,12 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         playerRigidBody.linearVelocity = movementInput * playerSpeed;
+
+        if(shootWaitTime > 0f)
+        {
+            shootWaitTime -= Time.fixedDeltaTime;
+        }
+        
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -188,8 +197,11 @@ public class PlayerController : MonoBehaviour
 
         bulletController.bulletTimer = shootRange;
         bulletController.playerNumber = playerID;
-        
+
+        shootWaitTime = shootTime;
         return bullet;
+
+
     }
 
     private BulletController GetController(GameObject bullet)
@@ -201,7 +213,8 @@ public class PlayerController : MonoBehaviour
     {
         while(AttackPulsado)
         {
-
+            if (shootWaitTime <= 0f)
+            {
                 GameObject bullet = InstantiateBullet();
 
                 BulletController bulletController = GetController(bullet);
@@ -225,9 +238,29 @@ public class PlayerController : MonoBehaviour
                     bulletController.bulletRight = true;
                 }
 
-                yield return new WaitForSeconds(shootTime);
+                shootWaitTime = Mathf.Max(0.05f, shootTime);
+
+            }
+
+            yield return null;
         }
 
     }
-    
+
+    public void TakeDamage()
+    {
+        currentHealth--;
+
+        currentHealth = Mathf.Max(0, currentHealth);
+
+        if(currentHealth <= 0)
+        {
+            PlayerDeath();
+        }
+    }
+
+    private void PlayerDeath()
+    {
+        gameObject.SetActive(false);
+    }
 }

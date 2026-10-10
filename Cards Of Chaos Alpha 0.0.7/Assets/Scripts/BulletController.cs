@@ -44,4 +44,22 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        PlayerController target = other.GetComponent<PlayerController>();
+        if (target == null)
+        {
+            return;
+        }
+
+        if (target.playerID == playerNumber)
+        {
+            return;
+        }
+
+        target.TakeDamage();
+
+        Destroy(gameObject);
+    }
 }

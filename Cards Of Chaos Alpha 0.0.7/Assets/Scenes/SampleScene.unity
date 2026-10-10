@@ -644,6 +644,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc00efed2840bf4fb6c421e876cabc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  cardType: 0
+  hpIncrease: 20
+  speedIncrease: 2
+  fireRateDecrease: 0.05
+  projectileSizeIncrease: 0.2
+  rangeIncrease: 0.5
 --- !u!212 &2142124432
 SpriteRenderer:
   serializedVersion: 3
