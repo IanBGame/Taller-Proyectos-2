@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
@@ -11,12 +10,47 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float playerSpeed;
     [SerializeField] private GameObject bulletPrefab;
 
+    [SerializeField] private Sprite[] playerSkins;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
+    public int playerID;
+
+    public float maxHealth;
+    public float projectileSize;
     public float shootTime;
     public float shootRange;
 
     private Coroutine corrutinaAtaque;
 
     private bool AttackPulsado = false;
+
+    public void LoadPlayerStats()
+    {
+        if(GameManager.instance == null)
+        {
+            return;
+        }
+
+        PlayerStats stats = GameManager.instance.GetPlayerStats(playerID);
+
+        if (stats == null)
+        {
+            return;
+        }
+
+        playerSpeed = stats.playerSpeed;
+        maxHealth = stats.Health;
+        projectileSize = stats.projectileSize;
+        shootRange = stats.shootRange;
+        shootTime = stats.shootTime;
+
+        SetSkin(stats.skinID);
+    }
+
+    public void SetSkin(int skinID)
+    {
+        spriteRenderer.sprite = playerSkins[skinID];
+    }
 
     private void Awake()
     {
@@ -25,12 +59,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerRigidBody.linearVelocity = movementInput;
+        playerRigidBody.linearVelocity = movementInput * playerSpeed;
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        movementInput = context.ReadValue<Vector2>() * playerSpeed;
+        movementInput = context.ReadValue<Vector2>();
     }
 
     public void OnAttackUp(InputAction.CallbackContext context)
@@ -148,6 +182,13 @@ public class PlayerController : MonoBehaviour
             Quaternion.identity
         );
 
+        bullet.transform.localScale *= projectileSize;
+
+        BulletController bulletController = bullet.GetComponent<BulletController>();
+
+        bulletController.bulletTimer = shootRange;
+        bulletController.playerNumber = playerID;
+        
         return bullet;
     }
 

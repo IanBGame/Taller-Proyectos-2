@@ -1,67 +1,84 @@
-using System.Diagnostics;
 using UnityEngine;
 
 public class BasicCardScript : MonoBehaviour
 {
-    bool isHPUp;//Hacer
-    bool isSpeedUp;
-    bool isFireRateUp;
-    bool isProjectileSizeUp;
-    bool isRangeUp;
+    [SerializeField] private CardType cardType;
+
+    [SerializeField] private float hpIncrease = 20f;
+    [SerializeField] private float speedIncrease = 2f;
+    [SerializeField] private float fireRateDecrease = 0.05f;
+    [SerializeField] private float projectileSizeIncrease = 0.2f;
+    [SerializeField] private float rangeIncrease = 0.5f;
+
+    public enum CardType
+    {
+        HPUp,
+        SpeedUp,
+        FireRateUp,
+        ProjectileSizeUp,
+        RangeUp
+    }
 
     void Awake()
     {
-        float randomBasicCard = Random.Range(1, 5);
-        if (randomBasicCard == 1)
-        {
-            isHPUp = true;
-        }
-        else if (randomBasicCard == 2)
-        {
-            isSpeedUp = true;
-        }
-        else if (randomBasicCard == 3)
-        {
-            isFireRateUp = true;
-        }
-        else if (randomBasicCard == 4)
-        {
-            isProjectileSizeUp = true;
-        }
-        else if(randomBasicCard == 5)
-        {
-            isRangeUp = true;
-        }
+        int randomBasicCard = Random.Range(1, 5);
+
+        cardType = (CardType)randomBasicCard;
     }
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         PlayerController target = other.GetComponent<PlayerController>();
-        if(target != null)
+        if(target == null)
         {
-         if (isHPUp == true)
-            {
-
-            }
-            else if (isSpeedUp == true)
-            {
-                target.playerSpeed += 30;
-                Destroy(this);
-            }
-            else if (isFireRateUp == true)
-            {
-                target.shootTime -= 1;
-                Destroy(this);
-            }
-            else if (isProjectileSizeUp == true)
-            {
-                Destroy(this);
-            }
-            else if (!isRangeUp == true) 
-            {
-                //RangeUp
-                Destroy(this);
-            }
+            return;
         }
 
+        ApplyCard(target.playerID);
+
+        target.LoadPlayerStats();
+    }
+
+    public void ApplyCard(int playerID)
+    {
+        if(GameManager.instance == null)
+        {
+            return;
+        }
+
+        PlayerStats playerStats = GameManager.instance.GetPlayerStats(playerID);
+
+        if (playerStats == null) 
+        {
+            return;
+        }
+
+        switch (cardType)
+        {
+            case CardType.HPUp:
+
+                playerStats.Health += hpIncrease;
+                break;
+
+            case CardType.SpeedUp:
+
+                playerStats.playerSpeed += speedIncrease;
+                break;
+
+            case CardType.FireRateUp:
+
+                playerStats.shootTime = Mathf.Max(0.05f, playerStats.shootTime - fireRateDecrease);
+                break;
+
+             case CardType.ProjectileSizeUp:
+
+                playerStats.projectileSize += projectileSizeIncrease;
+                break;
+
+             case CardType.RangeUp:
+                playerStats.shootRange += rangeIncrease;
+                break;
+        }
+
+        Destroy(gameObject);
     }
 }
