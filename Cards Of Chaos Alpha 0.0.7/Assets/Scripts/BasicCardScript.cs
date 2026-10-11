@@ -21,7 +21,7 @@ public class BasicCardScript : MonoBehaviour
 
     void Awake()
     {
-        int randomBasicCard = Random.Range(1, 5);
+        int randomBasicCard = Random.Range(0, 5);
 
         cardType = (CardType)randomBasicCard;
     }

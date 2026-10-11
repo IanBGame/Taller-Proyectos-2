@@ -10,8 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float playerSpeed;
     [SerializeField] private GameObject bulletPrefab;
 
-    [SerializeField] private Sprite[] playerSkins;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private PlayerSkinManager skinManager;
 
     public int playerID;
     public float currentHealth;
@@ -47,12 +46,7 @@ public class PlayerController : MonoBehaviour
         shootTime = stats.shootTime;
         currentHealth = maxHealth;
 
-        SetSkin(stats.skinID);
-    }
-
-    public void SetSkin(int skinID)
-    {
-        spriteRenderer.sprite = playerSkins[skinID];
+        skinManager.SetSkin(stats.skinID);
     }
 
     private void Awake()
@@ -191,7 +185,7 @@ public class PlayerController : MonoBehaviour
             Quaternion.identity
         );
 
-        bullet.transform.localScale *= projectileSize;
+        bullet.transform.localScale *= Mathf.Max(1f, projectileSize);
 
         BulletController bulletController = bullet.GetComponent<BulletController>();
 
