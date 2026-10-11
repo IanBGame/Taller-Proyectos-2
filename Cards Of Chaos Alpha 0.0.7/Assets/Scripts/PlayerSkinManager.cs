@@ -7,15 +7,13 @@ public class PlayerSkinManager : MonoBehaviour
 
     [SerializeField] private Transform visualContainer;
 
+    [SerializeField] private float skinScale = 0.05f;
+
     private GameObject currentSkin;
 
-    public void SetSkin(int playerID)
+    public void SetSkin(int skinID)
     {
-        if (visualContainer == null) 
-        {
-            return;
-        }
-        if (playerID < 0 || playerID >= playerSkins.Length)
+        if (skinID < 0 || skinID >= playerSkins.Length)
         {
             return;
         }
@@ -25,15 +23,30 @@ public class PlayerSkinManager : MonoBehaviour
             return;
         }
 
+        if (visualContainer == null) 
+        {
+            return;
+        }
+
         if (currentSkin != null)
         {
             Destroy(currentSkin);
         }
 
-        currentSkin = Instantiate(playerSkins[playerID], visualContainer);
+        currentSkin = Instantiate(playerSkins[skinID], visualContainer);
 
         currentSkin.transform.localPosition = Vector3.zero;
         currentSkin.transform.localRotation = Quaternion.identity;
-        currentSkin.transform.localScale = Vector3.one;
+        currentSkin.transform.localScale = Vector3.one * skinScale;
+    }
+
+    public Animator GetAnimator()
+    {
+        if (currentSkin == null)
+        {
+            return null;
+        }
+
+        return currentSkin.GetComponentInChildren<Animator>();
     }
 }

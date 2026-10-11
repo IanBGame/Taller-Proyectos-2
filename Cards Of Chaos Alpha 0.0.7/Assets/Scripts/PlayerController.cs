@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
 
     [SerializeField] private PlayerSkinManager skinManager;
+    private Animator playerAnimator;
 
     public int playerID;
     public float currentHealth;
@@ -27,7 +28,8 @@ public class PlayerController : MonoBehaviour
 
     public void LoadPlayerStats()
     {
-        if(GameManager.instance == null)
+        Debug.Log("1. Entrando en LoadPlayerStats");
+        if (GameManager.instance == null)
         {
             return;
         }
@@ -47,11 +49,20 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
 
         skinManager.SetSkin(stats.skinID);
+        playerAnimator = skinManager.GetAnimator();
     }
 
     private void Awake()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        if(playerAnimator != null)
+        {
+            playerAnimator.SetFloat("Speed", movementInput.magnitude);
+        }
     }
 
     private void FixedUpdate()
