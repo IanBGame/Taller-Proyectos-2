@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Suelo y Tilemap
+    uniqueID: 3224421645
+    locked: 0
+  - name: Cartas y cosas del escenario
+    uniqueID: 950408259
+    locked: 0
+  - name: Balas
+    uniqueID: 3442619815
+    locked: 0
+  - name: Personajes
+    uniqueID: 1915849619
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  m_MigratedRenderPipelines: []
