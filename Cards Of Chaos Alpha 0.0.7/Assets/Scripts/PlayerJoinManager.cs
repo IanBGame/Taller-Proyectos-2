@@ -102,6 +102,20 @@ public class PlayerJoinManager : MonoBehaviour
         }
 
         Debug.Log("Jugadores conectados: " + PlayerInput.all.Count);
+
+        Debug.Log(
+    "Jugador " + playerInput.playerIndex +
+    " - Dispositivos asignados: " + playerInput.devices.Count
+);
+
+        foreach (InputDevice device in playerInput.devices)
+        {
+            Debug.Log(
+                "Jugador " + playerInput.playerIndex +
+                " - Mando: " + device.displayName +
+                " - ID dispositivo: " + device.deviceId
+            );
+        }
     }
 
     private IEnumerator EnableStartAfterRelease(

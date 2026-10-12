@@ -4,7 +4,7 @@ public class BasicCardScript : MonoBehaviour
 {
     [SerializeField] private CardType cardType;
 
-    [SerializeField] private float hpIncrease = 20f;
+    [SerializeField] private float hpIncrease = 1f;
     [SerializeField] private float speedIncrease = 2f;
     [SerializeField] private float fireRateDecrease = 0.05f;
     [SerializeField] private float projectileSizeIncrease = 0.2f;

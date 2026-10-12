@@ -96,6 +96,11 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
+
+        if (movementInput != Vector2.zero)
+        {
+            Debug.Log("Jugador " + playerID + " recibe movimiento: " + movementInput);
+        }
     }
 
     public void OnAttackUp(InputAction.CallbackContext context)
