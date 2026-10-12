@@ -109,6 +109,7 @@ public class ShopManager : MonoBehaviour
             if (cardScript != null)
             {
                 cardScript.SetCardType(selectedCard);
+                cardScript.setSprites();
             }
         }
     }

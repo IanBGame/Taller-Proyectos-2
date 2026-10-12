@@ -10,6 +10,14 @@ public class BasicCardScript : MonoBehaviour
     [SerializeField] private float projectileSizeIncrease = 0.2f;
     [SerializeField] private float rangeIncrease = 0.5f;
 
+    [Header("Referencias Visuales")]
+    public SpriteRenderer spriteRenderer;
+    public Sprite spriteHPUp;
+    public Sprite spriteSpeedUp;
+    public Sprite spriteFireRateUp;
+    public Sprite spriteProjectileSizeUp;
+    public Sprite spriteRangeUp;
+
     public enum CardType
     {
         HPUp,
@@ -22,6 +30,38 @@ public class BasicCardScript : MonoBehaviour
     public void SetCardType(CardType type)
     {
         cardType = type;
+    }
+
+    public void setSprites()
+    {
+        if (spriteRenderer == null) return;
+
+        switch (cardType)
+        {
+            case CardType.HPUp:
+
+                spriteRenderer.sprite = spriteHPUp;
+                break;
+
+            case CardType.SpeedUp:
+
+                spriteRenderer.sprite = spriteSpeedUp;
+                break;
+
+            case CardType.FireRateUp:
+
+                spriteRenderer.sprite = spriteFireRateUp;
+                break;
+
+             case CardType.ProjectileSizeUp:
+
+                spriteRenderer.sprite = spriteProjectileSizeUp;
+                break;
+
+             case CardType.RangeUp:
+                spriteRenderer.sprite = spriteRangeUp;
+                break;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
