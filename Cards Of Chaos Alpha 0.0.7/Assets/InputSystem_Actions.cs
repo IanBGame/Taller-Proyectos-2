@@ -141,6 +141,16 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""StartGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""781e1d5c-6f76-44aa-8966-2730ec096ec3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -317,6 +327,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""AttackRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a14fef0c-78ed-456e-8a51-4aa04bcbe301"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -919,6 +940,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_AttackDown = m_Player.FindAction("AttackDown", throwIfNotFound: true);
         m_Player_AttackLeft = m_Player.FindAction("AttackLeft", throwIfNotFound: true);
         m_Player_AttackRight = m_Player.FindAction("AttackRight", throwIfNotFound: true);
+        m_Player_StartGame = m_Player.FindAction("StartGame", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1017,6 +1039,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_AttackDown;
     private readonly InputAction m_Player_AttackLeft;
     private readonly InputAction m_Player_AttackRight;
+    private readonly InputAction m_Player_StartGame;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1048,6 +1071,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/AttackRight".
         /// </summary>
         public InputAction @AttackRight => m_Wrapper.m_Player_AttackRight;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/StartGame".
+        /// </summary>
+        public InputAction @StartGame => m_Wrapper.m_Player_StartGame;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1089,6 +1116,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @AttackRight.started += instance.OnAttackRight;
             @AttackRight.performed += instance.OnAttackRight;
             @AttackRight.canceled += instance.OnAttackRight;
+            @StartGame.started += instance.OnStartGame;
+            @StartGame.performed += instance.OnStartGame;
+            @StartGame.canceled += instance.OnStartGame;
         }
 
         /// <summary>
@@ -1115,6 +1145,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @AttackRight.started -= instance.OnAttackRight;
             @AttackRight.performed -= instance.OnAttackRight;
             @AttackRight.canceled -= instance.OnAttackRight;
+            @StartGame.started -= instance.OnStartGame;
+            @StartGame.performed -= instance.OnStartGame;
+            @StartGame.canceled -= instance.OnStartGame;
         }
 
         /// <summary>
@@ -1450,6 +1483,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAttackRight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "StartGame" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnStartGame(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

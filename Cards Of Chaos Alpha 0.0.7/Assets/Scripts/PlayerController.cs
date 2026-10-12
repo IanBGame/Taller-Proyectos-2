@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private Coroutine corrutinaAtaque;
 
     private bool AttackPulsado = false;
+    public bool isAlive = true;
+    public bool canShoot = true;
 
     public void LoadPlayerStats()
     {
@@ -50,6 +52,21 @@ public class PlayerController : MonoBehaviour
 
         skinManager.SetSkin(stats.skinID);
         playerAnimator = skinManager.GetAnimator();
+    }
+
+    public void RefreshStats()
+    {
+        PlayerStats stats =
+            GameManager.instance.GetPlayerStats(playerID);
+
+        if (stats == null)
+            return;
+
+        playerSpeed = stats.playerSpeed;
+        maxHealth = stats.Health;
+        projectileSize = stats.projectileSize;
+        shootRange = stats.shootRange;
+        shootTime = stats.shootTime;
     }
 
     private void Awake()
@@ -218,7 +235,7 @@ public class PlayerController : MonoBehaviour
     {
         while(AttackPulsado)
         {
-            if (shootWaitTime <= 0f)
+            if (canShoot && shootWaitTime <= 0f)
             {
                 GameObject bullet = InstantiateBullet();
 
@@ -254,6 +271,11 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
+        if(!canShoot || !isAlive)
+        {
+            return;
+        }
+
         currentHealth--;
 
         currentHealth = Mathf.Max(0, currentHealth);
@@ -266,6 +288,60 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerDeath()
     {
-        gameObject.SetActive(false);
+        if(!isAlive)
+        {
+            return;
+        }
+
+        isAlive = false;
+
+        AttackPulsado = false;
+        movementInput = Vector2.zero;
+
+        playerRigidBody.linearVelocity = Vector2.zero;
+        playerRigidBody.simulated = false;
+
+        skinManager.SetVisible(false);
+
+        enabled = false;
+
+        if (CombatManager.instance != null)
+        {
+            CombatManager.instance.PlayerDied(playerID);
+        }
+    }
+
+    public void ResetForNewRound()
+    {
+        currentHealth = maxHealth;
+        isAlive = true;
+
+        AttackPulsado = false;
+        corrutinaAtaque = null;
+        shootWaitTime = 0f;
+        movementInput = Vector2.zero;
+
+        skinManager.SetVisible(true);
+
+        playerRigidBody.simulated = true;
+        playerRigidBody.linearVelocity = Vector2.zero;
+        playerRigidBody.angularVelocity = 0f;
+
+        enabled = true;
+    }
+
+    public void DisableShoot()
+    {
+        canShoot = false;
+
+        AttackPulsado = false;
+        shootWaitTime = 0f;
+        movementInput = Vector2.zero;
+
+        if (corrutinaAtaque != null)
+        {
+            StopCoroutine(corrutinaAtaque);
+            corrutinaAtaque = null;
+        }
     }
 }

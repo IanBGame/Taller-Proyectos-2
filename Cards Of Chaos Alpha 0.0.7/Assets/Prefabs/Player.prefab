@@ -58,6 +58,7 @@ MonoBehaviour:
   projectileSize: 0
   shootTime: 1.5
   shootRange: 3
+  isAlive: 1
 --- !u!50 &8963622021755807513
 Rigidbody2D:
   serializedVersion: 5
@@ -84,7 +85,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &645514767237518276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +231,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 781e1d5c-6f76-44aa-8966-2730ec096ec3
+    m_ActionName: 'Player/StartGame[/XInputControllerWindows1/start]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: 
@@ -289,7 +294,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.8846812
+  m_Radius: 1.3895817
 --- !u!1 &8204578063367529069
 GameObject:
   m_ObjectHideFlags: 0

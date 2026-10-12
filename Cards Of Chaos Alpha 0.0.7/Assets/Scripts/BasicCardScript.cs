@@ -19,12 +19,11 @@ public class BasicCardScript : MonoBehaviour
         RangeUp
     }
 
-    void Awake()
+    public void SetCardType(CardType type)
     {
-        int randomBasicCard = Random.Range(0, 5);
-
-        cardType = (CardType)randomBasicCard;
+        cardType = type;
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         PlayerController target = other.GetComponent<PlayerController>();
@@ -33,9 +32,29 @@ public class BasicCardScript : MonoBehaviour
             return;
         }
 
+        ShopManager shopManager = FindFirstObjectByType<ShopManager>();
+
+        if(shopManager == null)
+        {
+            return;
+        }
+
+        if(!shopManager.CanTakeCard(target.playerID))
+        {
+            return;
+        }
+
+
+        if(GameManager.instance == null || GameManager.instance.GetPlayerStats(target.playerID) == null)
+        {
+            return;
+        }
+
         ApplyCard(target.playerID);
 
-        target.LoadPlayerStats();
+        target.RefreshStats();
+
+        shopManager.PlayerTookCard(target.playerID);
     }
 
     public void ApplyCard(int playerID)

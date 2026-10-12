@@ -49,4 +49,12 @@ public class PlayerSkinManager : MonoBehaviour
 
         return currentSkin.GetComponentInChildren<Animator>();
     }
+
+    public void SetVisible(bool visible)
+    {
+        if (visualContainer != null)
+        {
+            visualContainer.gameObject.SetActive(visible);
+        }
+    }
 }

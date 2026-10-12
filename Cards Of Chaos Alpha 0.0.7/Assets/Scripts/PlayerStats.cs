@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerStats
 {
     public int playerID;
+    public int roundWins = 0;
 
     public float playerSpeed = 5f;
-    public float Health = 100f;
-    public float shootTime = 0.5f;
+    public float Health = 7f;
+    public float shootTime = 1f;
     public float shootRange = 3f;
     public float projectileSize = 1f;
 
