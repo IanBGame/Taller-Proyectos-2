@@ -7,7 +7,7 @@ public class PlayerSkinManager : MonoBehaviour
 
     [SerializeField] private Transform visualContainer;
 
-    [SerializeField] private float skinScale = 0.05f;
+    [SerializeField] private float skinScale =  1.0f;
 
     private GameObject currentSkin;
 

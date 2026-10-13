@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2610840860114082021}
   - component: {fileID: 4037279818224851934}
-  - component: {fileID: 5217702531774550742}
   - component: {fileID: 1103863915319424576}
+  - component: {fileID: -2524458300772234757}
   m_Layer: 0
-  m_Name: Card
+  m_Name: CardAdvanced
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,30 +94,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!114 &5217702531774550742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3742334694813424238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fc00efed2840bf4fb6c421e876cabc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  cardType: 0
-  hpIncrease: 20
-  speedIncrease: 2
-  fireRateDecrease: 0.05
-  projectileSizeIncrease: 0.2
-  rangeIncrease: 0.5
-  spriteRenderer: {fileID: 4037279818224851934}
-  spriteHPUp: {fileID: 5207037410763501750, guid: bf4b40f57766141988ae4a702b4dc1f6, type: 3}
-  spriteSpeedUp: {fileID: 6204705952127039551, guid: 8a27103572f2348fe818a124ce147322, type: 3}
-  spriteFireRateUp: {fileID: -2208603519926394735, guid: a69c012ee271d4ff88f0737119f01c7f, type: 3}
-  spriteProjectileSizeUp: {fileID: -6937585268149475127, guid: 6d852e8abb08a401db13af2a01b49563, type: 3}
-  spriteRangeUp: {fileID: -1935350826783862917, guid: 68703a7599138423fac184985d290eb0, type: 3}
 --- !u!61 &1103863915319424576
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -164,3 +140,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-2524458300772234757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742334694813424238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f9ac2f51fedac46b2e3be120202319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AdvancedCardScript

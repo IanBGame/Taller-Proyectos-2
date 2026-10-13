@@ -259,7 +259,7 @@ MonoBehaviour:
   - {fileID: 489877664388605410, guid: 7e6b325145b52ad40b09f7ed04eb7a39, type: 3}
   - {fileID: 1736243678967524753, guid: 189541cafa887e04e92a62bf816e8bea, type: 3}
   visualContainer: {fileID: 4918488731813940582}
-  skinScale: 0.3
+  skinScale: 0.25
 --- !u!58 &232880903678110578
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -295,7 +295,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1.3895817
+  m_Radius: 0.828202
 --- !u!1 &8204578063367529069
 GameObject:
   m_ObjectHideFlags: 0

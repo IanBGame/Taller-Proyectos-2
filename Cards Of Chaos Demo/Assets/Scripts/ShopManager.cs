@@ -10,7 +10,8 @@ using UnityEngine.SceneManagement;
 
 public class ShopManager : MonoBehaviour
 {
-    [SerializeField] private GameObject cardPrefab;
+    [SerializeField] private GameObject basicCardPrefab;
+    [SerializeField] private GameObject advancedCardPrefab;
     [SerializeField] private Transform[] cardSpawnPoints;
 
     [SerializeField] private float shopDuration = 20f;
@@ -84,6 +85,28 @@ public class ShopManager : MonoBehaviour
         BasicCardScript.CardType.RangeUp
         };
 
+        List<AdvancedCardScript.CardType> availableAdvancedCards = new List<AdvancedCardScript.CardType>
+        {
+        AdvancedCardScript.CardType.iceRounds,
+        AdvancedCardScript.CardType.sugarRush,
+        AdvancedCardScript.CardType.snailTrail,
+        AdvancedCardScript.CardType.tiny,
+        AdvancedCardScript.CardType.boo,
+        AdvancedCardScript.CardType.confetti,
+        AdvancedCardScript.CardType.gambling,
+        AdvancedCardScript.CardType.whereAmI,
+        AdvancedCardScript.CardType.dash,
+        AdvancedCardScript.CardType.beam,
+        AdvancedCardScript.CardType.rubberRounds,
+        AdvancedCardScript.CardType.spreadShot,
+        AdvancedCardScript.CardType.pierce,
+        AdvancedCardScript.CardType.closeUpMagic,
+        AdvancedCardScript.CardType.explodingRounds,
+        AdvancedCardScript.CardType.heal,
+        AdvancedCardScript.CardType.stasis,
+        AdvancedCardScript.CardType.kaboom
+        };
+
         foreach (Transform spawnPoint in cardSpawnPoints)
         {
             if (availableCards.Count == 0)
@@ -91,7 +114,7 @@ public class ShopManager : MonoBehaviour
                 break;
             }
 
-            if (spawnPoint == null || cardPrefab == null)
+            if (spawnPoint == null || basicCardPrefab == null)
             {
                 continue;
             }   
@@ -102,7 +125,7 @@ public class ShopManager : MonoBehaviour
 
             availableCards.RemoveAt(randomIndex);
 
-            GameObject card = Instantiate(cardPrefab, spawnPoint.position, Quaternion.identity);
+            GameObject card = Instantiate(basicCardPrefab, spawnPoint.position, Quaternion.identity);
 
             BasicCardScript cardScript = card.GetComponent<BasicCardScript>();
 

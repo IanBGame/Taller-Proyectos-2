@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887ab6dff1e2de043a00f14aaf3e8939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletController
-  bulletSpeed: 4
+  bulletSpeed: 8
   bulletTimer: 8
   playerNumber: 0
   bulletUp: 0
