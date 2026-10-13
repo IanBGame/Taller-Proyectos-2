@@ -28,6 +28,11 @@ public class AdvancedCardScript : MonoBehaviour
         kaboom
     }
 
+    public void SetCardType(CardType type)
+    {
+        cardType = type;
+    }
+
     public void setSprites()
     {
         if (spriteRenderer == null)

@@ -17,6 +17,10 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private float shopDuration = 20f;
     [SerializeField] private string gameScene = "Game";
 
+    //Chances
+    [Range(0f, 1f)]
+    [SerializeField] private float advancedCardChance = 0.3f;
+
     private HashSet<int> playersWithCard = new HashSet<int>();
 
     private float remainingShopTime;
@@ -75,7 +79,7 @@ public class ShopManager : MonoBehaviour
 
     private void GenerateCards()
     {
-        List<BasicCardScript.CardType> availableCards =
+        List<BasicCardScript.CardType> availableBasicCards =
             new List<BasicCardScript.CardType>
         {
         BasicCardScript.CardType.HPUp,
@@ -109,30 +113,63 @@ public class ShopManager : MonoBehaviour
 
         foreach (Transform spawnPoint in cardSpawnPoints)
         {
-            if (availableCards.Count == 0)
+            if (spawnPoint != null)
+            {
+                return;
+            }
+
+            bool generateAdvanced = Random.value < advancedCardChance;
+
+
+            if (availableBasicCards.Count == 0)
+            {
+                generateAdvanced = false;
+            }
+
+            if (availableAdvancedCards.Count == 0)
+            {
+                generateAdvanced = true;
+            }
+
+            if (availableBasicCards.Count == 0 && availableAdvancedCards.Count == 0)
             {
                 break;
             }
 
-            if (spawnPoint == null || basicCardPrefab == null)
+            if(generateAdvanced)
             {
-                continue;
-            }   
+                int randomIndex = Random.Range(0, availableBasicCards.Count);
 
-            int randomIndex = Random.Range(0, availableCards.Count);
+                AdvancedCardScript.CardType selectedCard = availableAdvancedCards[randomIndex];
 
-            BasicCardScript.CardType selectedCard = availableCards[randomIndex];
+                availableAdvancedCards.RemoveAt(randomIndex);
 
-            availableCards.RemoveAt(randomIndex);
+                GameObject card = Instantiate(advancedCardPrefab, spawnPoint.position, Quaternion.identity);
 
-            GameObject card = Instantiate(basicCardPrefab, spawnPoint.position, Quaternion.identity);
+                AdvancedCardScript cardScript = card.GetComponent<AdvancedCardScript>();
 
-            BasicCardScript cardScript = card.GetComponent<BasicCardScript>();
-
-            if (cardScript != null)
+                if(cardScript != null)
+                {
+                    cardScript.SetCardType(selectedCard);
+                }
+            }
+            else
             {
-                cardScript.SetCardType(selectedCard);
-                cardScript.setSprites();
+                int randomIndex = Random.Range(0, availableBasicCards.Count);
+
+                BasicCardScript.CardType selectedCard = availableBasicCards[randomIndex];
+
+                availableBasicCards.RemoveAt(randomIndex);
+
+                GameObject card = Instantiate(basicCardPrefab, spawnPoint.position, Quaternion.identity);
+
+                BasicCardScript cardScript = card.GetComponent<BasicCardScript>();
+
+                if (cardScript != null)
+                {
+                    cardScript.SetCardType(selectedCard);
+                    cardScript.setSprites();
+                }
             }
         }
     }
