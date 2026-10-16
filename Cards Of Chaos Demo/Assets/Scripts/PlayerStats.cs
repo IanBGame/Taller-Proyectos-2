@@ -14,15 +14,23 @@ public class PlayerStats
     public float projectileSize = 1f;
 
     public int skinID;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool hasIceRounds;
+    public bool hasSugarRush;
+    public bool hasSnailTrail;
+    public bool hasTiny;
+    public bool hasBoo;
+    public bool hasConfetti;
+    public bool hasGambling;
+    public bool hasWhereAmI;
+    public bool hasDash;
+    public bool hasBeam;
+    public bool hasRubberRounds;
+    public bool hasSpreadShot;
+    public bool hasPierce;
+    public bool hasCloseUpMagic;
+    public bool hasExplodingRounds;
+    public bool hasHeal;
+    public bool hasStasis;
+    public bool hasKaboom;
 }

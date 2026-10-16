@@ -11,6 +11,8 @@ public class BulletController : MonoBehaviour
     public bool bulletDown;
     public bool bulletLeft;
     public bool bulletRight;
+
+    public bool isIceBullet;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
