@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float projectileSize;
     public float shootTime;
     public float shootRange;
+    public float playerSize;
 
     private float shootWaitTime = 0f;
     private Coroutine corrutinaAtaque;
@@ -49,8 +50,9 @@ public class PlayerController : MonoBehaviour
         shootRange = stats.shootRange;
         shootTime = stats.shootTime;
         currentHealth = maxHealth;
+        playerSize = stats.playerSize;
 
-        skinManager.SetSkin(stats.skinID);
+    skinManager.SetSkin(stats.skinID);
         playerAnimator = skinManager.GetAnimator();
     }
 
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
         projectileSize = stats.projectileSize;
         shootRange = stats.shootRange;
         shootTime = stats.shootTime;
+        playerSize = stats.playerSize;
     }
 
     private void Awake()

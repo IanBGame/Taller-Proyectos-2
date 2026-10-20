@@ -72,7 +72,7 @@ public class BasicCardScript : MonoBehaviour
             return;
         }
 
-        ShopManager shopManager = FindFirstObjectByType<ShopManager>();
+        ShopManager shopManager = FindAnyObjectByType<ShopManager>();
 
         if(shopManager == null)
         {

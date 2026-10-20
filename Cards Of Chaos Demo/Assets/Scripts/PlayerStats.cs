@@ -12,9 +12,9 @@ public class PlayerStats
     public float shootTime = 1f;
     public float shootRange = 3f;
     public float projectileSize = 1f;
+    public float playerSize = 0.828202f;
 
     public int skinID;
-
     public bool hasIceRounds;
     public bool hasSugarRush;
     public bool hasSnailTrail;
@@ -33,4 +33,10 @@ public class PlayerStats
     public bool hasHeal;
     public bool hasStasis;
     public bool hasKaboom;
+
+    public void ApplyTiny()
+    {
+        
+    }
+
 }

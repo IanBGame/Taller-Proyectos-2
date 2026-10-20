@@ -115,7 +115,7 @@ public class AdvancedCardScript : MonoBehaviour
             return;
         }
 
-        ShopManager shopManager = FindFirstObjectByType<ShopManager>();
+        ShopManager shopManager = FindAnyObjectByType<ShopManager>();
 
         if (shopManager == null)
         {
@@ -133,15 +133,94 @@ public class AdvancedCardScript : MonoBehaviour
             return;
         }
 
-        ApplyCard(target.playerID);
+        ApplyCard(target.playerID, other);
 
         target.RefreshStats();
 
         shopManager.PlayerTookCard(target.playerID);
     }
 
-    public void ApplyCard(int playerID)
+    public void ApplyCard(int playerID, Collider2D other)
     {
+        PlayerController target = other.GetComponent<PlayerController>();
 
+        if (GameManager.instance == null)
+        {
+            return;
+        }
+
+        PlayerStats playerStats = GameManager.instance.GetPlayerStats(playerID);
+
+        if (playerStats == null)
+        {
+            return;
+        }
+
+
+        switch (cardType)
+        {
+            case CardType.iceRounds:
+
+
+                break;
+
+            case CardType.sugarRush:
+
+
+                break;
+
+            case CardType.snailTrail:
+
+
+                break;
+
+            case CardType.tiny:
+
+
+                break;
+
+            case CardType.boo:
+
+                break;
+            case CardType.confetti:
+
+                break;
+            case CardType.gambling:
+
+                break;
+            case CardType.whereAmI:
+
+                break;
+            case CardType.dash:
+
+                break;
+            case CardType.beam:
+
+                break;
+            case CardType.rubberRounds:
+
+                break;
+            case CardType.spreadShot:
+
+                break;
+            case CardType.pierce:
+
+                break;
+            case CardType.closeUpMagic:
+
+                break;
+            case CardType.explodingRounds:
+
+                break;
+            case CardType.heal:
+
+                break;
+            case CardType.stasis:
+
+                break;
+            case CardType.kaboom:
+
+                break;
+        }
     }
 }
