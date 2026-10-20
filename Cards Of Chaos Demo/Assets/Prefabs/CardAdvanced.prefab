@@ -152,3 +152,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f9ac2f51fedac46b2e3be120202319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AdvancedCardScript
+  spriteRenderer: {fileID: 4037279818224851934}
+  spriteTiny: {fileID: 874510592994474194, guid: b4a8a64004c3843489327ecadda0bf6c, type: 3}

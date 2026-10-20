@@ -22,6 +22,25 @@ public class PlayerController : MonoBehaviour
     public float shootRange;
     public float playerSize;
 
+    public bool hasIceRounds;
+    public bool hasSugarRush;
+    public bool hasSnailTrail;
+    public bool hasTiny;
+    public bool hasBoo;
+    public bool hasConfetti;
+    public bool hasGambling;
+    public bool hasWhereAmI;
+    public bool hasDash;
+    public bool hasBeam;
+    public bool hasRubberRounds;
+    public bool hasSpreadShot;
+    public bool hasPierce;
+    public bool hasCloseUpMagic;
+    public bool hasExplodingRounds;
+    public bool hasHeal;
+    public bool hasStasis;
+    public bool hasKaboom;
+
     private float shootWaitTime = 0f;
     private Coroutine corrutinaAtaque;
 
@@ -52,7 +71,26 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         playerSize = stats.playerSize;
 
-    skinManager.SetSkin(stats.skinID);
+        hasIceRounds = stats.hasIceRounds;
+        hasSugarRush = stats.hasSugarRush;
+        hasSnailTrail = stats.hasSnailTrail;
+        hasTiny = stats.hasTiny;
+        hasBoo = stats.hasBoo;
+        hasConfetti = stats.hasConfetti;
+        hasGambling = stats.hasGambling;
+        hasWhereAmI = stats.hasWhereAmI;
+        hasDash = stats.hasDash;
+        hasBeam = stats.hasBeam;
+        hasRubberRounds = stats.hasRubberRounds;
+        hasSpreadShot = stats.hasSpreadShot;
+        hasPierce = stats.hasPierce;
+        hasCloseUpMagic = stats.hasCloseUpMagic;
+        hasExplodingRounds = stats.hasExplodingRounds;
+        hasHeal = stats.hasHeal;
+        hasStasis = stats.hasStasis;
+        hasKaboom = stats.hasKaboom;
+
+        skinManager.SetSkin(stats.skinID);
         playerAnimator = skinManager.GetAnimator();
     }
 
@@ -70,6 +108,25 @@ public class PlayerController : MonoBehaviour
         shootRange = stats.shootRange;
         shootTime = stats.shootTime;
         playerSize = stats.playerSize;
+
+        hasIceRounds = stats.hasIceRounds;
+        hasSugarRush = stats.hasSugarRush;
+        hasSnailTrail = stats.hasSnailTrail;
+        hasTiny = stats.hasTiny;
+        hasBoo = stats.hasBoo;
+        hasConfetti = stats.hasConfetti;
+        hasGambling = stats.hasGambling;
+        hasWhereAmI = stats.hasWhereAmI;
+        hasDash = stats.hasDash;
+        hasBeam = stats.hasBeam;
+        hasRubberRounds = stats.hasRubberRounds;
+        hasSpreadShot = stats.hasSpreadShot;
+        hasPierce = stats.hasPierce;
+        hasCloseUpMagic = stats.hasCloseUpMagic;
+        hasExplodingRounds = stats.hasExplodingRounds;
+        hasHeal = stats.hasHeal;
+        hasStasis = stats.hasStasis;
+        hasKaboom = stats.hasKaboom;
     }
 
     private void Awake()

@@ -15,28 +15,29 @@ public class PlayerStats
     public float playerSize = 0.828202f;
 
     public int skinID;
-    public bool hasIceRounds;
-    public bool hasSugarRush;
-    public bool hasSnailTrail;
-    public bool hasTiny;
-    public bool hasBoo;
-    public bool hasConfetti;
-    public bool hasGambling;
-    public bool hasWhereAmI;
-    public bool hasDash;
-    public bool hasBeam;
-    public bool hasRubberRounds;
-    public bool hasSpreadShot;
-    public bool hasPierce;
-    public bool hasCloseUpMagic;
-    public bool hasExplodingRounds;
-    public bool hasHeal;
-    public bool hasStasis;
-    public bool hasKaboom;
+    public bool hasIceRounds = false;
+    public bool hasSugarRush = false;
+    public bool hasSnailTrail = false;
+    public bool hasTiny = false;
+    public bool hasBoo = false;
+    public bool hasConfetti = false;
+    public bool hasGambling = false;
+    public bool hasWhereAmI = false;
+    public bool hasDash = false;
+    public bool hasBeam = false;
+    public bool hasRubberRounds = false;
+    public bool hasSpreadShot = false;
+    public bool hasPierce = false;
+    public bool hasCloseUpMagic = false;
+    public bool hasExplodingRounds = false;
+    public bool hasHeal = false;
+    public bool hasStasis = false;
+    public bool hasKaboom = false;
 
-    public void ApplyTiny()
+    public void ApplyTiny(PlayerController player)
     {
-        
+        CircleCollider2D collider = player.GetComponent<CircleCollider2D>();
+        collider.radius = 0.828202f / 3 * 2;
     }
 
 }

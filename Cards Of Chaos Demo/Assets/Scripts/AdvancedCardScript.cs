@@ -4,7 +4,10 @@ public class AdvancedCardScript : MonoBehaviour
 {
     private CardType cardType;
 
+    [Header("Referencias Visuales")]
     public SpriteRenderer spriteRenderer;
+    public Sprite spriteTiny;
+  
 
     public enum CardType
     {
@@ -36,9 +39,7 @@ public class AdvancedCardScript : MonoBehaviour
     public void setSprites()
     {
         if (spriteRenderer == null)
-        {
             return;
-        }
 
         switch (cardType)
         {
@@ -59,7 +60,7 @@ public class AdvancedCardScript : MonoBehaviour
 
             case CardType.tiny:
 
-
+                spriteRenderer.sprite = spriteTiny;
                 break;
 
             case CardType.boo:
@@ -176,7 +177,12 @@ public class AdvancedCardScript : MonoBehaviour
 
             case CardType.tiny:
 
+                playerStats.hasTiny = true;
 
+                if(playerStats.hasTiny)
+                {
+                    playerStats.ApplyTiny(target);
+                }
                 break;
 
             case CardType.boo:
