@@ -7,7 +7,8 @@ public class AdvancedCardScript : MonoBehaviour
     [Header("Referencias Visuales")]
     public SpriteRenderer spriteRenderer;
     public Sprite spriteTiny;
-  
+    public Sprite spriteHeal;
+
 
     public enum CardType
     {
@@ -97,7 +98,7 @@ public class AdvancedCardScript : MonoBehaviour
 
                 break;
             case CardType.heal:
-
+                spriteRenderer.sprite = spriteHeal;
                 break;
             case CardType.stasis:
 
@@ -220,7 +221,9 @@ public class AdvancedCardScript : MonoBehaviour
                 break;
             case CardType.heal:
 
+                playerStats.hasHeal = true;
                 break;
+
             case CardType.stasis:
 
                 break;

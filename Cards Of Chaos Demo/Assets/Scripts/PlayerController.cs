@@ -303,8 +303,19 @@ public class PlayerController : MonoBehaviour
             if (canShoot && shootWaitTime <= 0f)
             {
                 GameObject bullet = InstantiateBullet();
-
+                
                 BulletController bulletController = GetController(bullet);
+                if (hasHeal)
+                {
+                    bulletController.healPlayerOnKill = true;
+                }
+                else bulletController.healPlayerOnKill = false;
+
+                if (bulletController != null)
+                {
+                    // 3. Decirle al proyectil quién es el dueño (en este caso, este GameObject)
+                    bulletController.shooter = this.gameObject;
+                }
 
                 //bullet.GetComponent<BulletController>().bulletTimer = shootRange;
 
@@ -334,7 +345,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void TakeDamage()
+    public void TakeDamage(GameObject shooter)
     {
         if(!canShoot || !isAlive)
         {
@@ -347,13 +358,20 @@ public class PlayerController : MonoBehaviour
 
         if(currentHealth <= 0)
         {
-            PlayerDeath();
+            PlayerDeath(shooter);
         }
     }
 
-    private void PlayerDeath()
+    private void PlayerDeath(GameObject shooter)
     {
-        if(!isAlive)
+        PlayerController player = shooter.GetComponent<PlayerController>();
+
+        if (player.hasHeal)
+        {
+            ApplyHeal();
+        }
+
+        if (!isAlive)
         {
             return;
         }
@@ -408,5 +426,10 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(corrutinaAtaque);
             corrutinaAtaque = null;
         }
+    }
+
+    public void ApplyHeal()
+    {
+        currentHealth++;
     }
 }

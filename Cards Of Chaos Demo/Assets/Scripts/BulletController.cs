@@ -5,6 +5,9 @@ public class BulletController : MonoBehaviour
     public float bulletSpeed;
     public float bulletTimer;
 
+    public bool healPlayerOnKill = false;
+    public GameObject shooter;
+
     public int playerNumber;
 
     public bool bulletUp;
@@ -60,7 +63,10 @@ public class BulletController : MonoBehaviour
             return;
         }
 
-        target.TakeDamage();
+        if (shooter != null)
+        {
+            target.TakeDamage(shooter);
+        }
 
         Destroy(gameObject);
     }
