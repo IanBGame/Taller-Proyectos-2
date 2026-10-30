@@ -4,6 +4,7 @@ public class BulletController : MonoBehaviour
 {
     public float bulletSpeed;
     public float bulletTimer;
+    public GameObject shooter;
 
     public int playerNumber;
 
@@ -49,6 +50,7 @@ public class BulletController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         PlayerController target = other.GetComponent<PlayerController>();
+
         if (target == null)
         {
             return;
@@ -59,7 +61,10 @@ public class BulletController : MonoBehaviour
             return;
         }
 
-        target.TakeDamage();
+        if (shooter != null)
+        {
+            target.TakeDamage(shooter);
+        }
 
         Destroy(gameObject);
     }

@@ -299,8 +299,13 @@ public class PlayerController : MonoBehaviour
             if (canShoot && shootWaitTime <= 0f && !hasSpreadShot)
             {
                 GameObject bullet = InstantiateBullet();
-
+                
                 BulletController bulletController = GetController(bullet);
+
+                if (bulletController != null)
+                {
+                    bulletController.shooter = this.gameObject;
+                }
 
                 //bullet.GetComponent<BulletController>().bulletTimer = shootRange;
 
@@ -367,7 +372,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void TakeDamage()
+    public void TakeDamage(GameObject shooter)
     {
         if(!canShoot || !isAlive)
         {
@@ -380,15 +385,22 @@ public class PlayerController : MonoBehaviour
 
         if(currentHealth <= 0)
         {
-            PlayerDeath();
+            PlayerDeath(shooter);
         }
     }
 
-    private void PlayerDeath()
+    private void PlayerDeath(GameObject shooter)
     {
-        if(!isAlive)
+        PlayerController player = shooter.GetComponent<PlayerController>();
+
+        if (!isAlive)
         {
             return;
+        }
+
+        if (player.hasHeal)
+        {
+            player.ApplyHeal();
         }
 
         isAlive = false;
@@ -441,5 +453,10 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(corrutinaAtaque);
             corrutinaAtaque = null;
         }
+    }
+
+    public void ApplyHeal()
+    {
+        currentHealth++;
     }
 }

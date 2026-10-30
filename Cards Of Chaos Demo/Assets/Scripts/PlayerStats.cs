@@ -37,7 +37,7 @@ public class PlayerStats
     public void ApplyTiny(PlayerController player)
     {
         CircleCollider2D collider = player.GetComponent<CircleCollider2D>();
-        collider.radius = 0.828202f / 3 * 2;
+        collider.radius = playerSize / 3 * 2;
     }
 
 }
