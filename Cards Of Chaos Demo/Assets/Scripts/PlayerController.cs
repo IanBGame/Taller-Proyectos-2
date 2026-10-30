@@ -305,15 +305,9 @@ public class PlayerController : MonoBehaviour
                 GameObject bullet = InstantiateBullet();
                 
                 BulletController bulletController = GetController(bullet);
-                if (hasHeal)
-                {
-                    bulletController.healPlayerOnKill = true;
-                }
-                else bulletController.healPlayerOnKill = false;
 
                 if (bulletController != null)
                 {
-                    // 3. Decirle al proyectil quién es el dueño (en este caso, este GameObject)
                     bulletController.shooter = this.gameObject;
                 }
 
@@ -366,14 +360,14 @@ public class PlayerController : MonoBehaviour
     {
         PlayerController player = shooter.GetComponent<PlayerController>();
 
-        if (player.hasHeal)
-        {
-            ApplyHeal();
-        }
-
         if (!isAlive)
         {
             return;
+        }
+
+        if (player.hasHeal)
+        {
+            player.ApplyHeal();
         }
 
         isAlive = false;

@@ -4,8 +4,6 @@ public class BulletController : MonoBehaviour
 {
     public float bulletSpeed;
     public float bulletTimer;
-
-    public bool healPlayerOnKill = false;
     public GameObject shooter;
 
     public int playerNumber;
@@ -53,6 +51,7 @@ public class BulletController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         PlayerController target = other.GetComponent<PlayerController>();
+
         if (target == null)
         {
             return;
