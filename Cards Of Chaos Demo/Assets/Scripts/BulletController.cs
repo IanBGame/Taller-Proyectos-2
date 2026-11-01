@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
@@ -15,6 +16,9 @@ public class BulletController : MonoBehaviour
 
     public bool isIceBullet;
 
+    public bool useCustomDirection = false;
+    public Vector2 customDirection;
+
     void Start()
     {
         
@@ -22,22 +26,30 @@ public class BulletController : MonoBehaviour
 
     void Update()
     {
-        if (bulletUp)
+        if (useCustomDirection)
         {
-            this.transform.Translate(this.bulletSpeed * Time.deltaTime * Vector3.up);
+            transform.position += (Vector3)(customDirection.normalized * bulletSpeed * Time.deltaTime);
         }
-        else if (bulletDown)
+        else
         {
-            this.transform.Translate(this.bulletSpeed * Time.deltaTime * Vector3.down);
+            if (bulletUp)
+            {
+                this.transform.Translate(this.bulletSpeed * Time.deltaTime * Vector3.up);
+            }
+            else if (bulletDown)
+            {
+                this.transform.Translate(this.bulletSpeed * Time.deltaTime * Vector3.down);
+            }
+            else if (bulletLeft)
+            {
+                this.transform.Translate(this.bulletSpeed * Time.deltaTime * Vector3.left);
+            }
+            else if (bulletRight)
+            {
+                this.transform.Translate(this.bulletSpeed * Time.deltaTime * Vector3.right);
+            }
         }
-        else if (bulletLeft)
-        {
-            this.transform.Translate(this.bulletSpeed * Time.deltaTime * Vector3.left);
-        }
-        else if (bulletRight)
-        {
-            this.transform.Translate(this.bulletSpeed * Time.deltaTime * Vector3.right);
-        }
+        
 
         bulletTimer -= Time.deltaTime;
 

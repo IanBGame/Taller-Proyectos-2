@@ -1,4 +1,5 @@
     using System.Collections;
+using System.Collections.Specialized;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
@@ -15,6 +16,8 @@ public class PlayerController : MonoBehaviour
 
     public int playerID;
     public float currentHealth;
+    [SerializeField] private float bulletAngle = 20f; //10-20-30-45
+
 
     public float maxHealth;
     public float projectileSize;
@@ -47,6 +50,8 @@ public class PlayerController : MonoBehaviour
     private bool AttackPulsado = false;
     public bool isAlive = true;
     public bool canShoot = true;
+
+   
 
     public void LoadPlayerStats()
     {
@@ -296,38 +301,42 @@ public class PlayerController : MonoBehaviour
     {
         while(AttackPulsado)
         {
-            if (canShoot && shootWaitTime <= 0f && !hasSpreadShot)
+            if (canShoot && shootWaitTime <= 0f)
             {
-                GameObject bullet = InstantiateBullet();
-                
-                BulletController bulletController = GetController(bullet);
-
-                if (bulletController != null)
+                if (hasSpreadShot)
                 {
-                    bulletController.shooter = this.gameObject;
+                    SpreadShot(direction);
                 }
-
-                //bullet.GetComponent<BulletController>().bulletTimer = shootRange;
-
-                if (direction == 1)
+                else
                 {
-                    bulletController.bulletUp = true;
-                }
-                else if (direction == 2)
-                {
-                    bulletController.bulletDown = true;
-                }
-                else if (direction == 3)
-                {
-                    bulletController.bulletLeft = true;
-                }
-                else if (direction == 4)
-                {
-                    bulletController.bulletRight = true;
-                }
 
-                shootWaitTime = Mathf.Max(0.05f, shootTime);
 
+                    GameObject bullet = InstantiateBullet();
+
+                    BulletController bulletController = GetController(bullet);
+
+                    if (bulletController != null)
+                    {
+                        bulletController.shooter = this.gameObject;
+
+                        switch(direction)
+                        {
+                            case 1:
+                                bulletController.bulletUp = true;
+                                break;
+                            case 2:
+                                bulletController.bulletDown = true;
+                                break;
+                            case 3:
+                                bulletController.bulletLeft = true;
+                                break;
+                            case 4:
+                                bulletController.bulletRight = true;
+                                break;
+                        }
+                    }
+                }
+                    shootWaitTime = Mathf.Max(0.05f, shootTime);
             }
             else if(canShoot  && shootWaitTime <= 0f && hasSpreadShot)
             {
@@ -458,5 +467,69 @@ public class PlayerController : MonoBehaviour
     public void ApplyHeal()
     {
         currentHealth++;
+    }
+
+    private Vector2 GetShootDirection(int direction)
+    {
+        switch(direction)
+        {
+            case 1:
+                return Vector2.up;
+
+            case 2:
+                return Vector2.down;
+            
+            case 3:
+                return Vector2.left;
+
+            case 4:
+                return Vector2.right;
+
+            default:
+                return Vector2.zero;
+        }
+    }
+
+    private void SpreadShot(int direction)
+    {
+        Vector2 shootDirection = GetShootDirection(direction);
+
+        if(shootDirection == Vector2.zero)
+        {
+            return;
+        }
+
+        GameObject bullet1 = InstantiateBullet();
+        GameObject bullet2 = InstantiateBullet();
+        GameObject bullet3 = InstantiateBullet();
+
+        // Obtener sus controladores
+        BulletController controller1 = GetController(bullet1);
+        BulletController controller2 = GetController(bullet2);
+        BulletController controller3 = GetController(bullet3);
+
+        Vector2 centerDirection = shootDirection;
+
+        Vector2 leftDirection = Quaternion.Euler(0, 0, spreadAngle) * shootDirection;
+
+        Vector2 rightDirection = Quaternion.Euler(0, 0, -spreadAngle) * shootDirection;
+
+        bullet2.transform.rotation = Quaternion.Euler(0, 0, spreadAngle);
+
+        bullet3.transform.rotation = Quaternion.Euler(0, 0, -spreadAngle);
+
+        controller1.useCustomDirection = true;
+        controller2.useCustomDirection = true;
+        controller3.useCustomDirection = true;
+
+        controller1.customDirection = centerDirection;
+        controller2.customDirection = leftDirection;
+        controller3.customDirection = rightDirection;
+
+        controller1.shooter = gameObject;
+        controller2.shooter = gameObject;
+        controller3.shooter = gameObject;
+
+        shootWaitTime = Mathf.Max(0.05f, shootTime);
     }
 }
