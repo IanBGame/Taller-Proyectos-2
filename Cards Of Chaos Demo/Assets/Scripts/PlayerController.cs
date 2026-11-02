@@ -286,6 +286,11 @@ public class PlayerController : MonoBehaviour
         bulletController.bulletTimer = shootRange;
         bulletController.playerNumber = playerID;
 
+        if(hasPierce)
+        {
+            bulletController.isPierce = true;
+        }
+
         shootWaitTime = shootTime;
         return bullet;
 
@@ -510,13 +515,13 @@ public class PlayerController : MonoBehaviour
 
         Vector2 centerDirection = shootDirection;
 
-        Vector2 leftDirection = Quaternion.Euler(0, 0, spreadAngle) * shootDirection;
+        Vector2 leftDirection = Quaternion.Euler(0, 0, bulletAngle) * shootDirection;
 
-        Vector2 rightDirection = Quaternion.Euler(0, 0, -spreadAngle) * shootDirection;
+        Vector2 rightDirection = Quaternion.Euler(0, 0, -bulletAngle) * shootDirection;
 
-        bullet2.transform.rotation = Quaternion.Euler(0, 0, spreadAngle);
+        bullet2.transform.rotation = Quaternion.Euler(0, 0, bulletAngle);
 
-        bullet3.transform.rotation = Quaternion.Euler(0, 0, -spreadAngle);
+        bullet3.transform.rotation = Quaternion.Euler(0, 0, -bulletAngle);
 
         controller1.useCustomDirection = true;
         controller2.useCustomDirection = true;

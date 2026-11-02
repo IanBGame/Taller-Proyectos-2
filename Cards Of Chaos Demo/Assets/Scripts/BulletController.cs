@@ -15,6 +15,7 @@ public class BulletController : MonoBehaviour
     public bool bulletRight;
 
     public bool isIceBullet;
+    public bool isPierce;
 
     public bool useCustomDirection = false;
     public Vector2 customDirection;
@@ -78,6 +79,10 @@ public class BulletController : MonoBehaviour
             target.TakeDamage(shooter);
         }
 
-        Destroy(gameObject);
+        if(!isPierce)
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }
