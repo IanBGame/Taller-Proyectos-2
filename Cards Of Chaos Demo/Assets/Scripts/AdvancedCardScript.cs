@@ -8,6 +8,8 @@ public class AdvancedCardScript : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Sprite spriteTiny;
     public Sprite spriteHeal;
+    public Sprite spritePierce;
+    public Sprite spriteSpreadShot;
 
     [SerializeField] private float fireRateDecrease = 0.05f;
 
@@ -41,71 +43,79 @@ public class AdvancedCardScript : MonoBehaviour
 
     public void setSprites()
     {
-        if (spriteRenderer == null)
-            return;
+        if (spriteRenderer == null) { 
+        return;}
 
         switch (cardType)
         {
-            case CardType.iceRounds:
-
-
-                break;
-
-            case CardType.sugarRush:
-
+            case CardType.iceRounds:            //Por implementar
 
                 break;
 
-            case CardType.snailTrail:
+            case CardType.sugarRush:             //Por implementar
 
+                break;
+
+            case CardType.snailTrail:            //Por implementar
 
                 break;
 
             case CardType.tiny:
 
-                spriteRenderer.sprite = spriteTiny;
-                break;
-
-            case CardType.boo:
-
-                break;
-            case CardType.confetti:
+                if (spriteTiny != null)
+                { spriteRenderer.sprite = spriteTiny; }
+                else Debug.LogWarning("No hay Sprites en la carta: Tiny (Adv)");
 
                 break;
-            case CardType.gambling:
+
+            case CardType.boo:                   //Por implementar
 
                 break;
-            case CardType.whereAmI:
+            case CardType.confetti:              //Por implementar
 
                 break;
-            case CardType.dash:
+            case CardType.gambling:              //Por implementar
 
                 break;
-            case CardType.beam:
+            case CardType.whereAmI:               //Por implementar
 
                 break;
-            case CardType.rubberRounds:
+            case CardType.dash:                    //Por implementar
+
+                break;
+            case CardType.beam:                  //Por implementar
+
+                break;
+            case CardType.rubberRounds:          //Por implementar
 
                 break;
             case CardType.spreadShot:
 
+                if (spriteSpreadShot != null)
+                { spriteRenderer.sprite = spriteSpreadShot; }
+                else Debug.LogWarning("No hay Sprites en la carta: SpreadShot (Adv)");
+
                 break;
             case CardType.pierce:
 
-                break;
-            case CardType.closeUpMagic:
+                if (spritePierce != null)
+                { spriteRenderer.sprite = spritePierce; }
+                else Debug.LogWarning("No hay Sprites en la carta: Pierce (Adv)");
 
                 break;
-            case CardType.explodingRounds:
+            case CardType.closeUpMagic:                 //Por implementar
+
+                break;
+            case CardType.explodingRounds:               //Por implementar
 
                 break;
             case CardType.heal:
                 spriteRenderer.sprite = spriteHeal;
                 break;
-            case CardType.stasis:
+            case CardType.stasis:                        //Por implementar
 
                 break;
-            case CardType.kaboom:
+            case CardType.kaboom:                         //Por implementar
 
                 break;
         }
