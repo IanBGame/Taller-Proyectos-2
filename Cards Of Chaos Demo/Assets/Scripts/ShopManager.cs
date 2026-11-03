@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Cryptography;
@@ -24,7 +24,7 @@ public class ShopManager : MonoBehaviour
     private HashSet<int> playersWithCard = new HashSet<int>();
 
     private float remainingShopTime;
-    private bool shopOver;
+    private bool shopOver = false;
 
     private void Start()
     {
@@ -113,10 +113,16 @@ public class ShopManager : MonoBehaviour
 
         foreach (Transform spawnPoint in cardSpawnPoints)
         {
-            if (spawnPoint != null)
+            if (spawnPoint == null)
             {
-                return;
+                continue;
             }
+
+            if (availableBasicCards.Count == 0 && availableAdvancedCards.Count == 0)
+            {
+                break;
+            }
+
 
             bool generateAdvanced = Random.value < advancedCardChance;
 
@@ -131,14 +137,10 @@ public class ShopManager : MonoBehaviour
                 generateAdvanced = true;
             }
 
-            if (availableBasicCards.Count == 0 && availableAdvancedCards.Count == 0)
-            {
-                break;
-            }
 
             if(generateAdvanced)
             {
-                int randomIndex = Random.Range(0, availableBasicCards.Count);
+                int randomIndex = Random.Range(0, availableAdvancedCards.Count);
 
                 AdvancedCardScript.CardType selectedCard = availableAdvancedCards[randomIndex];
 

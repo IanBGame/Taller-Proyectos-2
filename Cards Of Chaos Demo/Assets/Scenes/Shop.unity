@@ -1622,13 +1622,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793a7cc120ce66b42a8386160ec49a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopManager
-  cardPrefab: {fileID: 3742334694813424238, guid: c84bd288e07d3e04b9fb777effd2c9c9, type: 3}
+  basicCardPrefab: {fileID: 3742334694813424238, guid: c84bd288e07d3e04b9fb777effd2c9c9, type: 3}
+  advancedCardPrefab: {fileID: 3742334694813424238, guid: 17bd5f308b4adb54eb9f08ac0f31514c, type: 3}
   cardSpawnPoints:
   - {fileID: 1833281984}
   - {fileID: 554466882}
   - {fileID: 1604327651}
   shopDuration: 20
   gameScene: Game
+  advancedCardChance: 0.3
 --- !u!1 &1543273060
 GameObject:
   m_ObjectHideFlags: 0
