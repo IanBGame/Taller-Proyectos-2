@@ -9,6 +9,8 @@ public class AdvancedCardScript : MonoBehaviour
     public Sprite spriteTiny;
     public Sprite spriteHeal;
 
+    [SerializeField] private float fireRateDecrease = 0.05f;
+
 
     public enum CardType
     {
@@ -209,8 +211,13 @@ public class AdvancedCardScript : MonoBehaviour
                 break;
             case CardType.spreadShot:
 
+                playerStats.hasSpreadShot = true;
+
                 break;
             case CardType.pierce:
+
+                playerStats.hasPierce = true;
+                playerStats.shootTime = Mathf.Max(0.05f, playerStats.shootTime + fireRateDecrease / 2);
 
                 break;
             case CardType.closeUpMagic:
