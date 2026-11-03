@@ -1,5 +1,6 @@
     using System.Collections;
 using System.Collections.Specialized;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
@@ -51,7 +52,6 @@ public class PlayerController : MonoBehaviour
     public bool isAlive = true;
     public bool canShoot = true;
 
-   
 
     public void LoadPlayerStats()
     {
@@ -275,6 +275,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if(context.started && hasDash)
+        {
+
+        }
+    }
+
     private GameObject InstantiateBullet()
     {
         GameObject bullet = Instantiate(bulletPrefab,transform.position,Quaternion.identity);
@@ -343,44 +351,6 @@ public class PlayerController : MonoBehaviour
                 }
                     shootWaitTime = Mathf.Max(0.05f, shootTime);
             }
-            else if(canShoot  && shootWaitTime <= 0f && hasSpreadShot)
-            {
-                GameObject bullet1 = InstantiateBullet();
-                GameObject bullet2 = InstantiateBullet();
-                GameObject bullet3 = InstantiateBullet();
-
-                BulletController bulletController1 = GetController(bullet1);
-                BulletController bulletController2 = GetController(bullet2);
-                BulletController bulletController3 = GetController(bullet3);
-
-                if(direction == 1)
-                {
-                    bulletController1.bulletUp = true;
-                    bulletController2.bulletUp = true;
-                    bulletController3.bulletUp = true;
-
-                    bullet2.transform.eulerAngles = new Vector3(0,0,30);
-                }
-                else if(direction == 2)
-                {
-                    bulletController1.bulletDown = true;
-                    bulletController2.bulletDown = true;
-                    bulletController3.bulletDown = true;
-                }
-                else if(direction == 3)
-                {
-                    bulletController1.bulletLeft = true;
-                    bulletController2.bulletLeft = true;
-                    bulletController3.bulletLeft = true;
-                }
-                else if(direction == 4)
-                {
-                    bulletController1.bulletRight = true;
-                    bulletController2.bulletRight = true;
-                    bulletController3.bulletRight = true;
-                }
-            }
-
             yield return null;
         }
 
@@ -536,5 +506,10 @@ public class PlayerController : MonoBehaviour
         controller3.shooter = gameObject;
 
         shootWaitTime = Mathf.Max(0.05f, shootTime);
+    }
+
+    private void WhereAmI()
+    {
+        //GameObject otherPlayer = gameObject.GetComponent<>;
     }
 }
