@@ -23,6 +23,8 @@
 - El resto de las cartas son descartadas a la pila de descarte
 - El Ganador roba 1 carta del mazo y el perdedor 3 
   - En Caso de que se acaben las cartas del mazo, barajear la pila de descarte.
+  - Máximo 8 cartas en mano
+  - En caso de que no tengas ninguna carta PPoT, muestra tu mazo y descartalo entero (el chance es 0,0005% bro)
 
 > **Como Ganar**
  - Gana el primer jugador en conseguir:
@@ -30,15 +32,24 @@
 	  - 3 puntos de tipos distintos
 
 ## Cartas Powerup
+> **Cartas Instantaneas - Hechizos** 
+- +3
+- -3
+- Duelo: Solo importan los numeros
+- Piedra papel o tijeras invertido
+- Se intercambian las manos jugadas
+  
+> **Cartas Victoria - Premio**
+- Si ganas* remueve un punto de piedra
+- Si ganas* remueve un punto de papel
+- Si ganas* remueve un punto de tijeras
+- Si ganas escoge 4 cartas del oponente para descartar
+  
+> **Cartas Trampa - Maldiciones**
 - El proximo turno no puedes jugar piedra
 - El proximo turno no puedes jugar papel
 - El proximo turno no puedes jugar tijeras
-- +2
-- -2
 - Transformar piedra a papel
 - Transforar papel a tijeras
 - Transformar tijeras a piedra
 - Gana el numero mas bajo
-- Si ganas* remueve un punto de piedra
-- Si ganas* remueve un punto de papel
-- Si ganas* remueve un punto de tijeras
