@@ -1,8 +1,10 @@
     using System.Collections;
 using System.Collections.Specialized;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 using Debug = UnityEngine.Debug;
 
 public class PlayerController : MonoBehaviour
@@ -97,6 +99,11 @@ public class PlayerController : MonoBehaviour
 
         skinManager.SetSkin(stats.skinID);
         playerAnimator = skinManager.GetAnimator();
+
+        if (hasTiny)
+        {
+            stats.ApplyTiny(this);
+        }
     }
 
     public void RefreshStats()
@@ -141,7 +148,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(playerAnimator != null)
+        TeleportController tp = GetComponent<TeleportController>();
+        CircleCollider2D collider = GetComponent<CircleCollider2D>();
+        tp.checkRadius = collider.radius;
+
+        if (playerAnimator != null)
         {
             playerAnimator.SetFloat("Speed", movementInput.magnitude);
         }
@@ -361,6 +372,12 @@ public class PlayerController : MonoBehaviour
         if(!canShoot || !isAlive)
         {
             return;
+        }
+
+        if (hasWhereAmI)
+        {
+            TeleportController tp = GetComponent<TeleportController>();
+            tp.Teleport();
         }
 
         currentHealth--;

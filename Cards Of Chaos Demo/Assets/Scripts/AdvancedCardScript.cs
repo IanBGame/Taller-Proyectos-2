@@ -10,6 +10,7 @@ public class AdvancedCardScript : MonoBehaviour
     public Sprite spriteHeal;
     public Sprite spritePierce;
     public Sprite spriteSpreadShot;
+    public Sprite spriteWhereAmI;
 
     [SerializeField] private float fireRateDecrease = 0.05f;
 
@@ -77,7 +78,10 @@ public class AdvancedCardScript : MonoBehaviour
             case CardType.gambling:              //Por implementar
 
                 break;
-            case CardType.whereAmI:               //Por implementar
+            case CardType.whereAmI:
+                if (spriteWhereAmI != null)
+                { spriteRenderer.sprite = spriteWhereAmI; }
+                else Debug.LogWarning("No hay Sprites en la carta: Where am I (Adv)");
 
                 break;
             case CardType.dash:                    //Por implementar
@@ -192,10 +196,6 @@ public class AdvancedCardScript : MonoBehaviour
 
                 playerStats.hasTiny = true;
 
-                if(playerStats.hasTiny)
-                {
-                    playerStats.ApplyTiny(target);
-                }
                 break;
 
             case CardType.boo:
@@ -208,6 +208,8 @@ public class AdvancedCardScript : MonoBehaviour
 
                 break;
             case CardType.whereAmI:
+
+                playerStats.hasWhereAmI = true;
 
                 break;
             case CardType.dash:
