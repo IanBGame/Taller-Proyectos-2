@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(playerAnimator != null)
+        if (playerAnimator != null)
         {
             playerAnimator.SetFloat("Speed", movementInput.magnitude);
         }
@@ -151,11 +151,11 @@ public class PlayerController : MonoBehaviour
     {
         playerRigidBody.linearVelocity = movementInput * playerSpeed;
 
-        if(shootWaitTime > 0f)
+        if (shootWaitTime > 0f)
         {
             shootWaitTime -= Time.fixedDeltaTime;
         }
-        
+
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -277,15 +277,15 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if(context.started && hasDash)
+        if (context.started && hasDash)
         {
-
+            StartCoroutine(Dash());
         }
     }
 
     private GameObject InstantiateBullet()
     {
-        GameObject bullet = Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 
         bullet.transform.localScale *= Mathf.Max(1f, projectileSize);
 
@@ -294,7 +294,7 @@ public class PlayerController : MonoBehaviour
         bulletController.bulletTimer = shootRange;
         bulletController.playerNumber = playerID;
 
-        if(hasPierce)
+        if (hasPierce)
         {
             bulletController.isPierce = true;
         }
@@ -312,7 +312,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator ShootBullet(int direction)
     {
-        while(AttackPulsado)
+        while (AttackPulsado)
         {
             if (canShoot && shootWaitTime <= 0f)
             {
@@ -332,7 +332,7 @@ public class PlayerController : MonoBehaviour
                     {
                         bulletController.shooter = this.gameObject;
 
-                        switch(direction)
+                        switch (direction)
                         {
                             case 1:
                                 bulletController.bulletUp = true;
@@ -349,7 +349,7 @@ public class PlayerController : MonoBehaviour
                         }
                     }
                 }
-                    shootWaitTime = Mathf.Max(0.05f, shootTime);
+                shootWaitTime = Mathf.Max(0.05f, shootTime);
             }
             yield return null;
         }
@@ -358,7 +358,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(GameObject shooter)
     {
-        if(!canShoot || !isAlive)
+        if (!canShoot || !isAlive)
         {
             return;
         }
@@ -367,7 +367,7 @@ public class PlayerController : MonoBehaviour
 
         currentHealth = Mathf.Max(0, currentHealth);
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             PlayerDeath(shooter);
         }
@@ -446,14 +446,14 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 GetShootDirection(int direction)
     {
-        switch(direction)
+        switch (direction)
         {
             case 1:
                 return Vector2.up;
 
             case 2:
                 return Vector2.down;
-            
+
             case 3:
                 return Vector2.left;
 
@@ -469,7 +469,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 shootDirection = GetShootDirection(direction);
 
-        if(shootDirection == Vector2.zero)
+        if (shootDirection == Vector2.zero)
         {
             return;
         }
@@ -508,8 +508,16 @@ public class PlayerController : MonoBehaviour
         shootWaitTime = Mathf.Max(0.05f, shootTime);
     }
 
-    private void WhereAmI()
+    private IEnumerator Dash()
     {
-        //GameObject otherPlayer = gameObject.GetComponent<>;
+        playerSpeed *= 2;
+        yield return new WaitForSeconds(2);
+        playerSpeed /= 2;
+    }
+
+    private void Gamble()
+    {
+        int randomPowerUp;
+        //randomPowerUp = new Random(1, 3);
     }
 }
