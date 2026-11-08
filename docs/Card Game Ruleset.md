@@ -14,7 +14,7 @@
  - Repartir 7 cartas a cada jugador
  
  >**Jugar**
- - Cada jugador elige 1 carta PPoT y 0-3 cartas powerup
+ - Cada jugador elige 1 carta PPoT y 0-3 cartas powerup de su mano
  - Ambos eligen boca abajo y revelan a la vez
  - Primer se aplican las cartas instantáneas y trampas activas
  - Gana la ronda el que gane el PPoT
@@ -36,7 +36,8 @@
 	  - 3 puntos de tipos distintos
 
 ## Cartas Powerup
-> **Cartas Instantaneas - Hechizos** 
+> **Cartas Instantaneas - Hechizos**
+**Toman efecto la misma ronda en la que son jugadas**
 - +3
 - -3
 - Duelo: Solo importan los numeros
@@ -44,15 +45,17 @@
 - Se intercambian las cartas PPoT jugadas
   
 > **Cartas Victoria - Premio**
+**Toman efecto si el que las jugo gana la ronda**
 - Si ganas* remueve un punto de piedra del rival
 - Si ganas* remueve un punto de papel del rival
 - Si ganas* remueve un punto de tijeras del rival
 - Si ganas escoge 4 cartas del oponente para descartar
   
 > **Cartas Trampa - Maldiciones**
-- El proximo turno el rival no puede jugar piedra
-- El proximo turno el rival no puede jugar papel
-- El proximo turno el rival no puede jugar tijeras
+**Toman efecto la siguiente ronda si el que las jugo gana la ronda**
+- El rival no puede jugar piedra
+- El rival no puede jugar papel
+- El rival no puede jugar tijeras
 	  - En caso de no tener ninguna carta jugable, pierdes la ronda automaticamente
 - Transformar piedra a papel
 - Transforar papel a tijeras
