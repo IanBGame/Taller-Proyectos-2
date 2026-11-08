@@ -36,23 +36,20 @@
 	  - 3 puntos de tipos distintos
 
 ## Cartas Powerup
-> **Cartas Instantaneas - Hechizos**
-**Toman efecto la misma ronda en la que son jugadas**
+> **Cartas Instantaneas - Hechizos** --*Toman efecto la misma ronda en la que son jugadas*
 - +3
 - -3
 - Duelo: Solo importan los numeros
 - Piedra papel o tijeras invertido
 - Se intercambian las cartas PPoT jugadas
   
-> **Cartas Victoria - Premio**
-**Toman efecto si el que las jugo gana la ronda**
+> **Cartas Victoria - Premio** -- *Toman efecto si el que las jugo gana la ronda*
 - Si ganas* remueve un punto de piedra del rival
 - Si ganas* remueve un punto de papel del rival
 - Si ganas* remueve un punto de tijeras del rival
 - Si ganas escoge 4 cartas del oponente para descartar
   
-> **Cartas Trampa - Maldiciones**
-**Toman efecto la siguiente ronda si el que las jugo gana la ronda**
+> **Cartas Trampa - Maldiciones** -- *Toman efecto la siguiente ronda si el que las jugo gana la ronda*
 - El rival no puede jugar piedra
 - El rival no puede jugar papel
 - El rival no puede jugar tijeras
