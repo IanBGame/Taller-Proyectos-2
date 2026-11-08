@@ -19,7 +19,7 @@
  - Primer se aplican las cartas instantáneas y trampas activas
  - Gana la ronda el que gane el PPoT
 	  - En caso de que sea empate gana el que tenga el numero mas alto
-	  - En caso de empatar con los numeros tambien, se empata la ronda
+	  - En caso de empatar con los numeros tambien, se empata la ronda (no gana nadie)
 - El ganador mantiene su carta PPoT como un punto
 - El ganador mantiene sus cartas trampas jugadas para la próxima ronda
 - El ganador activa sus cartas Victoria
@@ -57,6 +57,6 @@
 - Transformar piedra a papel
 - Transforar papel a tijeras
 - Transformar tijeras a piedra
-	  - Cada carta solo se puede transformar una vez
-	  - Aplica a ambos jugadores
+	- Cada carta solo se puede transformar una vez
+	- Aplica a ambos jugadores
 - Gana el numero mas bajo
