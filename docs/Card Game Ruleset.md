@@ -6,8 +6,8 @@
 
 > **Cartas Powerup**
  - Las cartas del juego ya hechas
- - 1 de cada en el mazo (16)
- - 76 cartas en total
+ - 2 de cada en el mazo (16)
+ - 92 cartas en total
 
 ## Reglas (1v1)
 > **Antes de Empezar**
