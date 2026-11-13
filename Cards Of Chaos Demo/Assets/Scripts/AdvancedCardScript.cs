@@ -1,4 +1,5 @@
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AdvancedCardScript : MonoBehaviour
 {
@@ -76,6 +77,11 @@ public class AdvancedCardScript : MonoBehaviour
                 break;
             case CardType.gambling:              //Por implementar
 
+            int randomPowerUp;
+            randomPowerUp = Random.Range(0, 23);
+
+
+    
                 break;
             case CardType.whereAmI:               //Por implementar
 

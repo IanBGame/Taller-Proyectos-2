@@ -4,7 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
-using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -516,14 +515,8 @@ public class PlayerController : MonoBehaviour
         playerSpeed /= 2;
     }
 
-    private void Gamble()
+    private void Gamble(int numGamble)
     {
-        int randomPowerUp;
-        randomPowerUp = Random.Range(0, 23);
 
-        if(randomPowerUp == 0)
-        {
-            //Apply health up
-        }
     }
 }
