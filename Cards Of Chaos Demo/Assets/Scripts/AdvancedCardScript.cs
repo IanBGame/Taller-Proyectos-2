@@ -1,5 +1,7 @@
+using System.ComponentModel;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using System.Collections.Generic;
 
 public class AdvancedCardScript : MonoBehaviour
 {
@@ -77,11 +79,6 @@ public class AdvancedCardScript : MonoBehaviour
                 break;
             case CardType.gambling:              //Por implementar
 
-            int randomPowerUp;
-            randomPowerUp = Random.Range(0, 23);
-
-
-    
                 break;
             case CardType.whereAmI:               //Por implementar
 
@@ -152,106 +149,145 @@ public class AdvancedCardScript : MonoBehaviour
         {
             return;
         }
+        
+        PlayerStats stats = GameManager.instance.GetPlayerStats(target.playerID);
 
-        ApplyCard(target.playerID, other);
+        if (stats == null)
+        {
+            return;
+        }
+
+        bool applied = TryApplyCard(stats, target);
+
+        if(!applied)
+        {
+            return;
+        }
 
         target.RefreshStats();
+
+        Destroy(gameObject);
 
         shopManager.PlayerTookCard(target.playerID);
     }
 
-    public void ApplyCard(int playerID, Collider2D other)
+    private bool TryApplyCard(PlayerStats stats,PlayerController target)
     {
-        PlayerController target = other.GetComponent<PlayerController>();
-
-        if (GameManager.instance == null)
+        if (cardType == CardType.gambling)
         {
-            return;
+            return GiveRandomPower(stats, target);
         }
 
-        PlayerStats playerStats = GameManager.instance.GetPlayerStats(playerID);
+        return ApplyCard(cardType, stats, target);
+    }
 
-        if (playerStats == null)
+
+    private bool ApplyCard(CardType type, PlayerStats playerStats, PlayerController target)
+    {
+        // No permitir habilidades avanzadas repetidas
+        if (playerStats.HasAdvancedCard(type))
         {
-            return;
+            return false;
         }
 
-
-        switch (cardType)
+        switch (type)
         {
-            case CardType.iceRounds:
-
-
-                break;
-
-            case CardType.sugarRush:
-
-
-                break;
-
-            case CardType.snailTrail:
-
-
-                break;
-
             case CardType.tiny:
-
                 playerStats.hasTiny = true;
-
-                if(playerStats.hasTiny)
-                {
-                    playerStats.ApplyTiny(target);
-                }
+                playerStats.ApplyTiny(target);
                 break;
 
-            case CardType.boo:
-
-                break;
-            case CardType.confetti:
-
-                break;
-            case CardType.gambling:
-
-                break;
-            case CardType.whereAmI:
-
-                break;
-            case CardType.dash:
-
-                break;
-            case CardType.beam:
-
-                break;
-            case CardType.rubberRounds:
-
-                break;
             case CardType.spreadShot:
-
                 playerStats.hasSpreadShot = true;
-
                 break;
+
             case CardType.pierce:
-
                 playerStats.hasPierce = true;
-                playerStats.shootTime = Mathf.Max(0.05f, playerStats.shootTime + fireRateDecrease / 2);
-
+                playerStats.shootTime = Mathf.Max(
+                    0.05f,
+                    playerStats.shootTime + fireRateDecrease / 2f
+                );
                 break;
-            case CardType.closeUpMagic:
 
-                break;
-            case CardType.explodingRounds:
-
-                break;
             case CardType.heal:
-
                 playerStats.hasHeal = true;
                 break;
 
-            case CardType.stasis:
+            default:
+                // Carta todavía sin implementar
+                return false;
+        }
 
+        return true;
+    }
+
+
+private bool GiveRandomPower(PlayerStats stats, PlayerController target)
+    {
+        List<BasicCardScript.CardType> basicCards = new List<BasicCardScript.CardType>
+        {
+           BasicCardScript.CardType.HPUp,
+           BasicCardScript.CardType.SpeedUp,
+           BasicCardScript.CardType.FireRateUp,
+           BasicCardScript.CardType.ProjectileSizeUp,
+           BasicCardScript.CardType.RangeUp
+        };
+
+        List<CardType> advancedCards = new List<CardType>//AÑADIR AQUI LAS CARTAS QUE PONGAMOS
+        {
+        CardType.tiny,
+        CardType.spreadShot,
+        CardType.pierce,
+        CardType.heal
+        };
+
+        advancedCards.RemoveAll(type => stats.HasAdvancedCard(type));
+
+        int totalCards = basicCards.Count + advancedCards.Count;
+
+        int randomIndex = Random.Range(0, totalCards);
+
+        if(randomIndex < basicCards.Count)
+        {
+            BasicCardScript.CardType selectedBasic = basicCards[randomIndex];
+
+            ApplyRandomBasic(selectedBasic, stats);
+
+            return true;
+        }
+
+        else
+        {
+            int advancedIndex = randomIndex - basicCards.Count;
+
+            CardType selectedAdvanced = advancedCards[advancedIndex];
+
+            return ApplyCard(selectedAdvanced, stats, target);
+        }
+    }
+
+    private void ApplyRandomBasic(BasicCardScript.CardType type, PlayerStats stats)
+    {
+        switch(type)
+        {
+            case BasicCardScript.CardType.HPUp:
+                stats.Health += 1f;
                 break;
-            case CardType.kaboom:
 
+            case BasicCardScript.CardType.SpeedUp:
+                stats.playerSpeed += 1f;
+                break;
+
+            case BasicCardScript.CardType.FireRateUp:
+                stats.shootTime = Mathf.Max(0.05f, stats.shootTime - 0.05f);
+                break;
+
+            case BasicCardScript.CardType.ProjectileSizeUp:
+                stats.projectileSize += 0.2f;
+                break;
+
+            case BasicCardScript.CardType.RangeUp:
+                stats.shootRange += 0.5f;
                 break;
         }
     }
