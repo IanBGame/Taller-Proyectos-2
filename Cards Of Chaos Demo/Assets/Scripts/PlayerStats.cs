@@ -40,4 +40,63 @@ public class PlayerStats
         collider.radius = playerSize / 3 * 2;
     }
 
+    public bool HasAdvancedCard(AdvancedCardScript.CardType type)
+    {
+        switch(type)
+        {
+            case AdvancedCardScript.CardType.iceRounds:
+                return hasIceRounds;
+
+            case AdvancedCardScript.CardType.sugarRush:
+                return hasSugarRush;
+
+            case AdvancedCardScript.CardType.snailTrail:
+                return hasSnailTrail;
+
+            case AdvancedCardScript.CardType.tiny:
+                return hasTiny;
+
+            case AdvancedCardScript.CardType.boo:
+                return hasBoo;
+
+            case AdvancedCardScript.CardType.confetti:
+                return hasConfetti;
+
+            case AdvancedCardScript.CardType.whereAmI:
+                return hasWhereAmI;
+
+            case AdvancedCardScript.CardType.dash:
+                return hasDash;
+
+            case AdvancedCardScript.CardType.beam:
+                return hasBeam;
+
+            case AdvancedCardScript.CardType.rubberRounds:
+                return hasRubberRounds;
+
+            case AdvancedCardScript.CardType.spreadShot:
+                return hasSpreadShot;
+
+            case AdvancedCardScript.CardType.pierce:
+                return hasPierce;
+
+            case AdvancedCardScript.CardType.closeUpMagic:
+                return hasCloseUpMagic;
+
+            case AdvancedCardScript.CardType.explodingRounds:
+                return hasExplodingRounds;
+
+            case AdvancedCardScript.CardType.heal:
+                return hasHeal;
+
+            case AdvancedCardScript.CardType.stasis:
+                return hasStasis;
+
+            case AdvancedCardScript.CardType.kaboom:
+                return hasKaboom;
+
+            default:
+                return false;
+        }
+    }
 }
