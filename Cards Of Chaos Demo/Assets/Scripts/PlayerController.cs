@@ -527,6 +527,6 @@ public class PlayerController : MonoBehaviour
 
     private void WhereAmI()
     {
-        //GameObject otherPlayer = gameObject.GetComponent<>;
+        GetComponent<TeleportController>().Teleport();
     }
 }
