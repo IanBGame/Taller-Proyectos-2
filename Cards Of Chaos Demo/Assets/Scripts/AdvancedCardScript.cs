@@ -13,6 +13,7 @@ public class AdvancedCardScript : MonoBehaviour
     public Sprite spriteHeal;
     public Sprite spritePierce;
     public Sprite spriteSpreadShot;
+    public Sprite spriteWhereAmI;
 
     [SerializeField] private float fireRateDecrease = 0.05f;
 
@@ -80,7 +81,10 @@ public class AdvancedCardScript : MonoBehaviour
             case CardType.gambling:              //Por implementar
 
                 break;
-            case CardType.whereAmI:               //Por implementar
+            case CardType.whereAmI:
+                if (spriteWhereAmI != null)
+                { spriteRenderer.sprite = spriteWhereAmI; }
+                else Debug.LogWarning("No hay Sprites en la carta: Where am I (Adv)");
 
                 break;
             case CardType.dash:                    //Por implementar
@@ -212,9 +216,13 @@ public class AdvancedCardScript : MonoBehaviour
             case CardType.heal:
                 playerStats.hasHeal = true;
                 break;
+                
+            case CardType.whereAmI:
+                playerStats.hasWhereAmI = true;
+                break;
 
             default:
-                // Carta todavía sin implementar
+                // Carta todavÃ­a sin implementar
                 return false;
         }
 
@@ -233,12 +241,13 @@ private bool GiveRandomPower(PlayerStats stats, PlayerController target)
            BasicCardScript.CardType.RangeUp
         };
 
-        List<CardType> advancedCards = new List<CardType>//AÑADIR AQUI LAS CARTAS QUE PONGAMOS
+        List<CardType> advancedCards = new List<CardType>//AÅƒADIR AQUI LAS CARTAS QUE PONGAMOS
         {
         CardType.tiny,
         CardType.spreadShot,
         CardType.pierce,
-        CardType.heal
+        CardType.heal,
+        CardType.whereAmI
         };
 
         advancedCards.RemoveAll(type => stats.HasAdvancedCard(type));

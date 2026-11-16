@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 645514767237518276}
   - component: {fileID: 8198668492760744874}
   - component: {fileID: 232880903678110578}
+  - component: {fileID: 3929141115373662949}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -54,10 +55,30 @@ MonoBehaviour:
   skinManager: {fileID: 8198668492760744874}
   playerID: 0
   currentHealth: 0
+  bulletAngle: 20
   maxHealth: 0
   projectileSize: 0
   shootTime: 1.5
   shootRange: 3
+  playerSize: 0
+  hasIceRounds: 0
+  hasSugarRush: 0
+  hasSnailTrail: 0
+  hasTiny: 0
+  hasBoo: 0
+  hasConfetti: 0
+  hasGambling: 0
+  hasWhereAmI: 0
+  hasDash: 0
+  hasBeam: 0
+  hasRubberRounds: 0
+  hasSpreadShot: 0
+  hasPierce: 0
+  hasCloseUpMagic: 0
+  hasExplodingRounds: 0
+  hasHeal: 0
+  hasStasis: 0
+  hasKaboom: 0
   isAlive: 1
   canShoot: 1
 --- !u!50 &8963622021755807513
@@ -236,6 +257,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 781e1d5c-6f76-44aa-8966-2730ec096ec3
     m_ActionName: 'Player/StartGame[/XInputControllerWindows1/start]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3d9d2bb2-37c0-4248-9b54-d0ea40c373d0
+    m_ActionName: Player/Dash
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -296,6 +321,27 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.828202
+--- !u!114 &3929141115373662949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8194779976648125582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5fa3c9301282b4188a10c3b29e7245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TeleportController2D
+  minX: -10
+  maxX: 10
+  minY: -5
+  maxY: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  checkRadius: 0.5
+  maxAttempts: 30
 --- !u!1 &8204578063367529069
 GameObject:
   m_ObjectHideFlags: 0
