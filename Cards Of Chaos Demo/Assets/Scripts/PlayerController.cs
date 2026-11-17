@@ -372,8 +372,7 @@ public class PlayerController : MonoBehaviour
 
         if (hasWhereAmI)
         {
-            TeleportController tp = GetComponent<TeleportController>();
-            tp.Teleport();
+            WhereAmI();
         }
 
         currentHealth--;

@@ -20,6 +20,8 @@ public class BulletController : MonoBehaviour
     public bool useCustomDirection = false;
     public Vector2 customDirection;
 
+    public int maxBounces = 3;
+
     void Start()
     {
         
@@ -50,7 +52,6 @@ public class BulletController : MonoBehaviour
                 this.transform.Translate(this.bulletSpeed * Time.deltaTime * Vector3.right);
             }
         }
-        
 
         bulletTimer -= Time.deltaTime;
 
@@ -62,10 +63,28 @@ public class BulletController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.GetComponent<BulletController>() != null) return;
+
         PlayerController target = other.GetComponent<PlayerController>();
 
-        if (target == null)
+        if (target == null) // Significa que es pared, intentar aplicar rubber rounds
         {
+            PlayerController shooterController = shooter != null ? shooter.GetComponent<PlayerController>() : null;
+
+            if (shooterController != null && shooterController.hasRubberRounds && maxBounces > 0)
+            {
+                maxBounces--;
+
+                Vector2 currentDir = GetCurrentDirection();
+                float randomAngle = Random.Range(-60f, 60f);
+                customDirection = (Quaternion.Euler(0, 0, randomAngle) * (-currentDir)).normalized;
+                useCustomDirection = true;
+                transform.position += (Vector3)(customDirection * 0.1f);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
             return;
         }
 
@@ -79,10 +98,22 @@ public class BulletController : MonoBehaviour
             target.TakeDamage(shooter);
         }
 
-        if(!isPierce)
+        if (!isPierce)
         {
             Destroy(gameObject);
         }
+
         
     }
+
+    private Vector2 GetCurrentDirection()
+    {
+        if (useCustomDirection) return customDirection.normalized;
+        if (bulletUp) return Vector2.up;
+        if (bulletDown) return Vector2.down;
+        if (bulletLeft) return Vector2.left;
+        if (bulletRight) return Vector2.right;
+        return Vector2.right;
+    }
+
 }
