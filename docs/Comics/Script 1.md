@@ -1,8 +1,11 @@
 Magoobers(Magoob)(Magus Stultus Stultus):
 
 Amarillo(Dumbass): Ilíthios (ithios) (Chaz) // Pasado: idk // 28/12/XXXX
+
 Azul(Calladito): Skáse // ntropalós // Skapalos (Es agil btw) // Pasado: Viene de una familia rica y no ha tenido mucho contacto social y no es muy apto. 2/1/XXXX
+
 Rosa(Ragebaiter): Radzevich (Rantzévits) // Pasado: Criada en un pueblo pequeño, con mucho talento mágico y habilidades innatas, es el mayor causante de problemas en su pueblo, ya que hace muchas bromas pesadas.
+
 Verde(Smartypants): Xerólas // Éxypna // Pasado: Sus padres son dueños de una biblioteca, donde fue criado con mucho amor y tuvo una buena enseñanza. Es muy alegre, pero muy inocente y fácil de chinchar.
 
 6 PAGINAS//
