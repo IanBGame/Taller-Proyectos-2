@@ -13,7 +13,8 @@ public class AdvancedCardScript : MonoBehaviour
     public Sprite spriteHeal;
     public Sprite spritePierce;
     public Sprite spriteSpreadShot;
-    public Sprite spriteWhereAmI;
+    public Sprite spriteWhereAmI; 
+    public Sprite spriteRubberRounds; 
 
     [SerializeField] private float fireRateDecrease = 0.05f;
 
@@ -93,7 +94,10 @@ public class AdvancedCardScript : MonoBehaviour
             case CardType.beam:                  //Por implementar
 
                 break;
-            case CardType.rubberRounds:          //Por implementar
+            case CardType.rubberRounds:          
+                if (spriteRubberRounds != null)
+                { spriteRenderer.sprite = spriteRubberRounds; }
+                else Debug.LogWarning("No hay Sprites en la carta: Rubber Rounds (Adv)");
 
                 break;
             case CardType.spreadShot:
@@ -219,6 +223,10 @@ public class AdvancedCardScript : MonoBehaviour
                 
             case CardType.whereAmI:
                 playerStats.hasWhereAmI = true;
+                break;
+            
+            case CardType.rubberRounds:
+                playerStats.hasRubberRounds = true;
                 break;
 
             default:
