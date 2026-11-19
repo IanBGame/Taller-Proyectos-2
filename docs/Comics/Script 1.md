@@ -20,7 +20,7 @@ Vemos como el azul intenta evitar a su club de fans por que no quiere socializar
 
 
 ## ROSA PAGINA //
-
+Vemos como rosa con una sonrisa picara huye de un pobre ciudadano al que ha gastado una broma, podríamos ponerle un cubo en la cabeza y que esté mojado, y luego el pobre bromeado se da contra una farola y cae, rosa se rie y llega a su destino. 
 
 
 ## VERDE PAGINA //
