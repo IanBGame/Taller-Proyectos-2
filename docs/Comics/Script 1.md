@@ -24,6 +24,7 @@ Vemos como rosa con una sonrisa picara huye de un pobre ciudadano al que ha gast
 
 
 ## VERDE PAGINA //
+Anda preocupado por la calles, con urgencia y un libro en la mano, que lee atentamente. Pasa por las calles hasta chocarse contra el ciudadano que le bromeo el rosa. Le ayuda a levantarse y arregla el cubo(Que tiene la forma del golpe contra la farola). Luego mira a su destino y corre hacia el estresado.
 
 
 
@@ -36,3 +37,5 @@ QUE EL AMARILLO ESTÉ FULL EMPANADO, LE QUIERO QUE NO SEPA NI QUE ESTA VIVO
  
 
 ## COMPETICION //
+Todos los magos aparecen en orbes y al desaparecer el orbe aparecen en la arena(Lo del orbe podeis inspiraros en cuando aperece el Terminator en Terminator 1) y
+toman posición de combate, pueden darle vueltas a la varita o ponerse imponentes, ya como decida arte
